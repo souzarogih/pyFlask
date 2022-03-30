@@ -1,0 +1,10 @@
+{
+  "payment": {
+    "value": 200.00,
+    "payment_data": "29-03-2022",
+    "payload": {
+      "track_one": "234324534536546565653456936569774354",
+      "track_two": "EWRRHYJUKOIUYTPCÇ.~4560;/4TRFD-0P345/-+.3435"
+    }
+  }
+}

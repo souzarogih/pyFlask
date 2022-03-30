@@ -5,15 +5,30 @@ from resources.usuario import User, UserRegister, UserLogin, UserLogout, UserCon
 from resources.site import Sites, Site
 from flask_jwt_extended import JWTManager
 from blacklist import BLACKLIST
+from config_json import read_json_env, read_payment_json, DATABASE_URL
+from sql_alchemy import banco
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///banco.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///banco.db' # comentado para subir aplicação no herok
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = 'DontTellAnyone'
 app.config['JWT_BLACKLIST_ENABLED'] = True
+banco.init_app(app) # criado para subir aplicação no heroku
 api = Api(app)
 jwt = JWTManager(app)
 
+# Leitura de arquivo json
+# receive = config_json.read_json_env()
+# print(receive)
+
+# receive_payment = read_payment_json()
+# print('receive_payment:', receive_payment)
+
+
+@app.route('/')
+def index():
+    return '<h1>Deploy para Heroku realizado com sucesso!</h1>'
 
 @app.before_first_request
 def cria_banco():
@@ -40,7 +55,8 @@ api.add_resource(Sites, '/sites')
 api.add_resource(Site, '/sites/<string:url>')
 api.add_resource(UserConfirm, '/confirmacao/<int:user_id>')
 
-if __name__ == '__main__':
-    from sql_alchemy import banco
-    banco.init_app(app)
-    app.run(debug=True)
+# comentado para subir aplicação no herok
+# if __name__ == '__main__':
+#     from sql_alchemy import banco
+#     banco.init_app(app)
+#     app.run(debug=True)

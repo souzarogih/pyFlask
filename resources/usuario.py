@@ -7,6 +7,7 @@ from werkzeug.security import safe_str_cmp
 from blacklist import BLACKLIST
 import traceback
 from mail import send_mail_google
+from flask import make_response, render_template
 
 # create_refresh_token -> pesquisar por refresh token para jwt
 
@@ -97,4 +98,6 @@ class UserConfirm(Resource):
 
         user.ativado = True
         user.save_user()
-        return {"message": "User id '{}' confirmed successfully.".format(user_id)}, 200
+        # return {"message": "User id '{}' confirmed successfully.".format(user_id)}, 200
+        headers = {'Content-Type': 'text/html'}
+        return make_response(render_template('user_confirm.html', email=user.email, usuario=user.login), 200, headers)

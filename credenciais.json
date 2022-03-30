@@ -1,0 +1,10 @@
+{
+  "USER": "ubuntu",
+  "PASSWORD": "1234",
+  "HOST": "localhost",
+  "PORT": "5432",
+  "DATABASE": "ubuntu",
+  "JWT_SECRET_KEY": "asedasdwdasdasdasd",
+  "DATABASE_URL": "postgres://ifmlbovdvafqgn:c7d663142c637fb460c534ccc1a6738d2cf14f8534df06c438aa25a36bdaeabc@ec2-54-157-79-121.compute-1.amazonaws.com:5432/d3r7153r3j2am6"
+
+}
