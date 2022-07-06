@@ -56,7 +56,7 @@ api.add_resource(Site, '/sites/<string:url>')
 api.add_resource(UserConfirm, '/confirmacao/<int:user_id>')
 
 # comentado para subir aplicação no herok
-# if __name__ == '__main__':
-#     from sql_alchemy import banco
-#     banco.init_app(app)
-#     app.run(debug=True)
+if __name__ == '__main__':
+    from sql_alchemy import banco
+    banco.init_app(app)
+    app.run(debug=True)
