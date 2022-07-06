@@ -98,6 +98,6 @@ class UserConfirm(Resource):
 
         user.ativado = True
         user.save_user()
-        # return {"message": "User id '{}' confirmed successfully.".format(user_id)}, 200
-        headers = {'Content-Type': 'text/html'}
-        return make_response(render_template('user_confirm.html', email=user.email, usuario=user.login), 200, headers)
+        return {"message": "User id '{}' confirmed successfully.".format(user_id)}, 200
+        # headers = {'Content-Type': 'text/html'}
+        # return make_response(render_template('user_confirm.html', email=user.email, usuario=user.login), 200, headers)

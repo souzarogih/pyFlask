@@ -9,12 +9,12 @@ from config_json import read_json_env, read_payment_json, DATABASE_URL
 from sql_alchemy import banco
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///banco.db' # comentado para subir aplicação no herok
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///banco.db' # comentado para subir aplicação no herok
+# app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = 'DontTellAnyone'
 app.config['JWT_BLACKLIST_ENABLED'] = True
-banco.init_app(app) # criado para subir aplicação no heroku
+# banco.init_app(app) # criado para subir aplicação no heroku
 api = Api(app)
 jwt = JWTManager(app)
 

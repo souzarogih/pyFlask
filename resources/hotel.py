@@ -1,4 +1,4 @@
-# import sqlite3
+import sqlite3
 import psycopg2
 from flask_restful import Resource, reqparse
 from models.hotel import HotelModel
@@ -20,10 +20,10 @@ path_params.add_argument('offset', type=float)
 
 class Hoteis(Resource):
     def get(self):
-        # connection = sqlite3.connect('banco.db') # comentado para o heroku
-        # cursor = connection.cursor()
-        connection = psycopg2.connect(DATABASE_URL)
-        cursor = connection.cursor() # Criado para o heroku
+        connection = sqlite3.connect('banco.db') # comentado para o heroku
+        cursor = connection.cursor()
+        # connection = psycopg2.connect(DATABASE_URL)
+        # cursor = connection.cursor() # Criado para o heroku
 
         dados = path_params.parse_args()
         dados_validos = {chave:dados[chave] for chave in dados if dados[chave] is not None}
@@ -31,14 +31,14 @@ class Hoteis(Resource):
 
         if not parametros.get('cidade'):
             tupla = tuple([parametros[chave] for chave in parametros])
-            # resultado = cursor.execute(consulta_sem_cidade, tupla) # comentado para o heroku
-            cursor.execute(consulta_sem_cidade, tupla)
-            resultado = cursor.fetchall() # criado para o heroku
+            resultado = cursor.execute(consulta_sem_cidade, tupla) # comentado para o heroku
+            # cursor.execute(consulta_sem_cidade, tupla)
+            # resultado = cursor.fetchall() # criado para o heroku
         else:
             tupla = tuple([parametros[chave] for chave in parametros])
-            # resultado = cursor.execute(consulta_com_cidade, tupla) # comentado para o heroku
-            cursor.execute(consulta_sem_cidade, tupla)
-            resultado = cursor.fetchall() # criado para o heroku
+            resultado = cursor.execute(consulta_com_cidade, tupla) # comentado para o heroku
+            # cursor.execute(consulta_sem_cidade, tupla)
+            # resultado = cursor.fetchall() # criado para o heroku
 
         hoteis = []
         if resultado:
@@ -52,8 +52,8 @@ class Hoteis(Resource):
                     'site_id': linha[5]
                 })
 
-        # return {'hoteis': [hotel.json() for hotel in HotelModel.query.all()]}
-        return {'hoteis': hoteis}
+        return {'hoteis': [hotel.json() for hotel in HotelModel.query.all()]}
+        # return {'hoteis': hoteis}
 
 
 class Hotel(Resource):

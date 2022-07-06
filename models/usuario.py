@@ -7,6 +7,7 @@ MAILGUN_API_KEY = 'key-5f9cfb789e009f8a171d01d6195149b0'
 FROM_TITLE = 'CONFIRMATION'
 FROM_EMAIL = 'no-reply@email.com'
 
+
 class UserModel(banco.Model):
     __tablename__ = 'usuarios'
 
